@@ -2,10 +2,11 @@ const bcrypt = require('bcrypt');
 const { Users } = require('../models/users.models');
 
 exports.signup = async (req, res)=>{
+    console.log(req.body)
     const { email, password, firstname, lastname, role, phonenumber} = req.body;
     try{
         const existUser = await Users.findOne({
-            where: {email:email}
+            where: {email: email}
         })
 
         if(existUser){
@@ -23,7 +24,7 @@ exports.signup = async (req, res)=>{
 
     } catch(error){
         console.log(error)
-        res.status(500).json({message:'Internal server error'})
+        res.status(500).json({error: error})
     }
 };
 
@@ -56,7 +57,7 @@ exports.signin = async (req, res)=>{
 
     } catch (error){
         console.log(error)
-        res.status(500).json({ message: 'Internal server error'})
+        res.status(500).json({ error: 'Internal server error'})
     }
 };
 
