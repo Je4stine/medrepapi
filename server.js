@@ -3,8 +3,6 @@ const bodyParser = require('body-parser');4
 const cors = require('cors');
 const morgan = require('morgan');
 const AuthCtl = require('./controllers/auth.controller');
-const PouchDB = require('pouchdb');
-const PouchDBServer = require('pouchdb-server');
 
 
 const app = express();
@@ -26,7 +24,7 @@ app.post('/signin', AuthCtl.signin);
 app.post('/reset', AuthCtl.reset);
 
 app.listen(8000, ()=>{
-    console.log('Server running at port 8080')
+    console.log('Server running at port 8000')
 })
 
 
