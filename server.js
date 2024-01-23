@@ -25,7 +25,7 @@ app.post('/signup', AuthCtl.signup);
 app.post('/signin', AuthCtl.signin);
 app.post('/reset', AuthCtl.reset);
 
-app.listen(8080, ()=>{
+app.listen(8000, ()=>{
     console.log('Server running at port 8080')
 })
 
