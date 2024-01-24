@@ -1,31 +1,49 @@
 const bcrypt = require('bcrypt');
 const { Users } = require('../models/users.models');
+const { validationResult } = require('express-validator');
 
 exports.signup = async (req, res)=>{
-    console.log(req.body)
-    const { email, password, firstname, lastname, role, phonenumber} = req.body;
-    try{
-        const existUser = await Users.findOne({
-            where: {email: email}
-        })
-
-        if(existUser){
-           return res.status(409).json({message: "User with that email already exists in the System"})
-        }
-
-        const convertPwd = (await bcrypt.hash(password, 10)).toString();
-        const addUser = await Users.create({
-            email,
-            password: convertPwd,
-            firstname, lastname, role, phonenumber
-        });
-
-        res.json({message:'User added successfully'});
-
-    } catch(error){
-        console.log(error)
-        res.status(500).json({error: error})
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
     }
+
+    const { email, password, role, firstname, lastname, phonenumber } = req.body;
+
+     try {
+    // Check if the user already exists
+    const existingUser = await Users.findOne({ where: { email } });
+    if (existingUser) {
+      return res.status(400).json({ error: 'User already exists with this email' });
+    }
+
+
+    const hashedPassword = (await bcrypt.hash(password, 10)).toString();
+
+
+    const newUser = await Users.create({
+      email,
+      password: hashedPassword,
+      role,
+      firstname,
+      lastname,
+      phonenumber,
+    });
+
+    const userResponse = {
+      id: newUser.id,
+      email: newUser.email,
+      role: newUser.role,
+      firstname: newUser.firstname,
+      lastname: newUser.lastname,
+      phonenumber: newUser.phonenumber,
+    };
+
+    return res.status(201).json(userResponse);
+  } catch (error) {
+    console.error('Error creating user:', error);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
 };
 
 exports.signin = async (req, res)=>{
@@ -53,7 +71,7 @@ exports.signin = async (req, res)=>{
     }
 
 
-    res.status(200).json({message : "Login success"})
+    res.status(200).json({email:userExist.email, firstname:userExist.firstname, lastname: userExist.lastname, phonenumber: userExist.phonenumber })
 
     } catch (error){
         console.log(error)
