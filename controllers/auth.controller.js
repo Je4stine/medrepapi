@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
-const { Users } = require('../models/users.models');
+// const { Users } = require('../models/users.models');
 const { validationResult } = require('express-validator');
+const {Users} = require("../models/associations")
 
 exports.signup = async (req, res)=>{
     const errors = validationResult(req);
@@ -11,7 +12,7 @@ exports.signup = async (req, res)=>{
     const { email, password, role, firstname, lastname, phonenumber } = req.body;
 
      try {
-    // Check if the user already exists
+
     const existingUser = await Users.findOne({ where: { email: email } });
     if (existingUser) {
       return res.status(400).json({ error: 'User already exists with this email' });
