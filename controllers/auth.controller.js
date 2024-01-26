@@ -72,7 +72,7 @@ exports.signin = async (req, res)=>{
     }
 
 
-    res.status(200).json({email:userExist.email, firstname:userExist.firstname, lastname: userExist.lastname, phonenumber: userExist.phonenumber, role: userExist.role })
+    res.status(200).json({id: userExist.id, email:userExist.email, firstname:userExist.firstname, lastname: userExist.lastname, phonenumber: userExist.phonenumber, role: userExist.role })
 
     } catch (error){
         console.log(error)
