@@ -54,7 +54,14 @@ exports.getVailabiltyByPk = async(req, res)=>{
 
 exports.getAll = async(req, res)=>{
     try{
-        const allAvailabilities = await Availability.findAll()
+        const allAvailabilities = await Availability.findAll({
+            include: [{
+                model: Users, 
+                attributes: ['firstname', 'lastname'] 
+            }]
+        })
+
+
         return res.status(200).json({allAvailabilities})
 
     }
