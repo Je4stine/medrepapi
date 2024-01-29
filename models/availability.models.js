@@ -21,10 +21,10 @@ Availability.init({
         field: 'UserId'
     },
     startTime:{
-        type: DataTypes.STRING(250)
+        type: DataTypes.DATE
     },
     endTime:{
-        type: DataTypes.STRING(250)
+        type: DataTypes.DATE
     }
     
 },

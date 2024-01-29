@@ -1,4 +1,6 @@
 const {Appointments} = require('../models/associations');
+const moments = require('moment');
+const {Op,Sequelize} = require('sequelize')
 
 
 exports.createAppointment = async(req, res)=>{
@@ -24,13 +26,21 @@ exports.createAppointment = async(req, res)=>{
 
 exports.getAppointments = async(req, res)=>{
     try{
-        const { userId} = req.body
+        const { userId} = req.body;
+
+        const today = new Date().toISOString().slice(0, 10);
         
         const getData = await Appointments.findAll({
             where:{
-                userId
+                userId,
+                appointmentDate: {
+                    [Op.and]: [
+                        Sequelize.where(Sequelize.fn('DATE', Sequelize.col('appointmentDate')), today)
+                    ]
+                  },
             }
         });
+
 
         return res.status(200).json({
             data: getData
@@ -48,12 +58,20 @@ exports.getAppointments = async(req, res)=>{
 exports.getRepAppointments = async(req, res)=>{
     try{
         const {repid} = req.body;
-
+        const today = new Date().toISOString().slice(0, 10);
+        
         const allRepAppointment = await Appointments.findAll({
             where:{
-                repid
+                repid,
+                appointmentDate: {
+                    [Op.and]: [
+                        Sequelize.where(Sequelize.fn('DATE', Sequelize.col('appointmentDate')), today)
+                    ]
+                  },
             }
         });
+
+
 
         return res.status(200).json({
             appointments: allRepAppointment

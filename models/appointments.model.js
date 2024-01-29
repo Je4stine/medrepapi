@@ -16,7 +16,7 @@ Appointments.init({
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'users', // 'users' table
+            model: 'users', 
             key: 'id' 
         },
         field: 'UserId'
@@ -34,7 +34,8 @@ Appointments.init({
         type: DataTypes.INTEGER
     },
     status:{
-        type: DataTypes.BOOLEAN
+        type: DataTypes.STRING(100),
+        defaultValue: 'pending'
     },
     
     appointmentDate: {

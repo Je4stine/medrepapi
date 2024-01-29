@@ -32,7 +32,7 @@ module.exports = {
         type: Sequelize.INTEGER
     },
     status:{
-        type: Sequelize.BOOLEAN
+        type: Sequelize.STRING(100)
     },
     
     appointmentDate: {

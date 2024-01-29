@@ -20,10 +20,10 @@ module.exports = {
         field: 'UserId'
     },
     startTime:{
-        type: Sequelize.STRING(250)
+        type: Sequelize.DATE
     },
     endTime:{
-        type: Sequelize.STRING(250)
+        type: Sequelize.DATE
     },
     createdAt: {
       type: Sequelize.DATE,
