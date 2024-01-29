@@ -59,7 +59,7 @@ exports.signin = async (req, res)=>{
 
     if(!userExist)
     {
-        return res.status(401).json({error: "Invalid email address"})
+        return res.status(401).json({error: "User with the email address does not exist"})
     }
     console.log(userExist)
 
