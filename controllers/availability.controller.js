@@ -1,4 +1,3 @@
-// const {Availability} = require('../models/availability.models');
 const {Availability, Users} = require('../models/associations')
 
 exports.createAvailability = async(req, res)=>{

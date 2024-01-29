@@ -17,8 +17,24 @@ Appointments.init({
         allowNull: false,
         references: {
             model: 'users', // 'users' table
-            key: 'id' // primary key 'id' of 'users' table
-        }
+            key: 'id' 
+        },
+        field: 'UserId'
+    },
+    firstname:
+    {
+        type: DataTypes.STRING(200)
+    },
+    lastname:
+    {
+        type: DataTypes.STRING(200)
+    },
+    repid:
+    {
+        type: DataTypes.INTEGER
+    },
+    status:{
+        type: DataTypes.BOOLEAN
     },
     
     appointmentDate: {

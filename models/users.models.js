@@ -30,6 +30,12 @@ Users.init({
     },
     phonenumber:{
         type: DataTypes.STRING(100)
+    },
+    paymentstatus:{
+        type: DataTypes.STRING(100)
+    },
+    amount:{
+        type: DataTypes.INTEGER
     }
 },
 {

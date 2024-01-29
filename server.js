@@ -4,6 +4,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const AuthCtl = require('./controllers/auth.controller');
 const Availability = require('./controllers/availability.controller')
+const Appointments = require('./controllers/appointments.controller')
 
 
 const app = express();
@@ -28,6 +29,9 @@ app.post('/reset', AuthCtl.reset);
 app.post('/availability', Availability.createAvailability)
 app.post('/availabilityByuser', Availability.getVailabiltyByPk);
 app.get('/allAvailabilities', Availability.getAll)
+
+app.post('/createAppointment', Appointments.createAppointment)
+app.get('/consappointments', Appointments.getAppointments)
 
 app.listen(8000, ()=>{
     console.log('Server running at port 8000')

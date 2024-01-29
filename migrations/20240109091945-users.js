@@ -30,6 +30,12 @@ module.exports = {
     phonenumber:{
         type: Sequelize.STRING(100)
     },
+    paymentstatus:{
+        type: Sequelize.STRING(100)
+    },
+    amount:{
+        type: Sequelize.INTEGER
+    },
     createdAt: {
       type: Sequelize.DATE,
       allowNull: false,
@@ -45,7 +51,7 @@ module.exports = {
 
   async down (queryInterface, Sequelize) {
   
-    await queryInterface.dropTable('users');
+    // await queryInterface.dropTable('users');
    
   }
 };
