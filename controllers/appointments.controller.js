@@ -47,7 +47,7 @@ exports.getAppointments = async(req, res)=>{
 
 exports.getRepAppointments = async(req, res)=>{
     try{
-        const {repid} = re.body;
+        const {repid} = req.body;
 
         const allRepAppointment = await Appointments.findAll({
             where:{
