@@ -33,6 +33,10 @@ app.get('/allAvailabilities', Availability.getAll)
 app.post('/createAppointment', Appointments.createAppointment)
 app.post('/consappointments', Appointments.getAppointments)
 app.post('/repappointments', Appointments.getRepAppointments)
+app.post('/completeAppointment', Appointments.complete)
+app.post('/reschedule', Appointments.reschedule)
+app.post('/getOverdue', Appointments.getoverdues)
+app.post('/getReschedule', Appointments.getReschedules)
 
 app.listen(8000, ()=>{
     console.log('Server running at port 8000')

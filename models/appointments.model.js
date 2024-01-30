@@ -21,14 +21,6 @@ Appointments.init({
         },
         field: 'UserId'
     },
-    firstname:
-    {
-        type: DataTypes.STRING(200)
-    },
-    lastname:
-    {
-        type: DataTypes.STRING(200)
-    },
     repid:
     {
         type: DataTypes.INTEGER
